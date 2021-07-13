@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Employee } from '../module/employee.module';
+import { Employee } from '../model/employee.model';
 @Injectable({
   providedIn: 'root'
 })
@@ -20,8 +20,8 @@ export class EmployeeSerService {
   ];
   constructor() { }
 
-  onGetEmployee(id:number){
-    return this.employees.find(x=>x.id === id)
+  onGetEmployee(id){
+    return this.employees.find( x=> x.id === id)
   }
 
   getData(){
@@ -39,7 +39,7 @@ export class EmployeeSerService {
   oldEmployee.phone = employee.phone;
   }
 
-  onDelete(id:Number){
+  onDelete(id:number){
   let  employee = this.employees.find(x=>x.id === id);
   let index = this.employees.indexOf(employee,0)
   this.employees.splice(index,1)

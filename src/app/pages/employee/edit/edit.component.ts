@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm  } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Employee } from '../../module/employee.module';
+import { Employee } from '../../model/employee.model';
 import { EmployeeSerService } from './../../services/employee-ser.service';
 
 @Component({
@@ -21,27 +21,29 @@ employee:Employee ={
   constructor( private router:Router ,private route:ActivatedRoute , private employeSer:EmployeeSerService) { }
 
   ngOnInit(): void {
-    this.id =+ this.route.snapshot.paramMap.get('id');
-    this.header =this.id === 0 ? 'Add Employee' : 'Edit Employee';
+    this.id = +this.route.snapshot.paramMap.get('id');
+    console.log(this.id);
+    this.header = this.id === 0 ? 'Add Employee' : 'Edit Employee';
 
     if(this.id != 0){
     this.employee = this.employeSer.onGetEmployee(this.id);
     }
   }
 onSubmit(form:NgForm){
-let employee:Employee ={
-    id:form.value.id,
+  console.log(form.value);
+    let employee:Employee ={
+    id:Number(form.value.id),
     name:form.value.name,
     email:form.value.email,
-    phone:form.value.phone
+    phone:(form.value.phone)
+    
+    
 };
 if(this.id === 0){
   this.employeSer.onAdd(employee);
 }
 else{
   this.employeSer.onUpdate(employee);
-  console.log( this.employeSer.onUpdate(employee));
-  
 }
 
 this.router.navigateByUrl('');

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { EmployeeSerService } from '../services/employee-ser.service';
-import { Employee } from '../module/employee.module';
+import { Employee } from '../model/employee.model';
 @Component({
   selector: 'app-employee',
   templateUrl: './employee.component.html',
@@ -14,7 +14,7 @@ export class EmployeeComponent implements OnInit {
     this.employees=this.employeeSer.getData()
   }
 
-  onDelete(id:Number){
+  onDelete(id:number){
   this.employeeSer.onDelete(id)
   }
 }
