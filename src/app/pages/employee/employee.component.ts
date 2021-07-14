@@ -15,6 +15,9 @@ export class EmployeeComponent implements OnInit {
   }
 
   onDelete(id:number){
-  this.employeeSer.onDelete(id)
+    if(confirm('are you sure you want to delete ')){
+      this.employeeSer.onDelete(id);
+      alert('Delted Successfully');
+    }
   }
 }
